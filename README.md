@@ -21,3 +21,4 @@
 1. Github login for now -> Google login later
 2. Change localhost to vercel link later in the github Oauth setting
 3. Change favicon.icon to our logo later
+4. Change StartupCard to ProjectCard
