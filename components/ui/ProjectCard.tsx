@@ -4,10 +4,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { Button } from './button'
+import { Author, Project } from '@/sanity/types'
+
+export type ProjectCardType = Omit<Project, "author"> & { author?: Author }
 
 const ProjectCard = ({ post } : { post:ProjectCardType }) => {
   // Destructure the post object for esaier access
-  const { _createdAt, views, author: { _id: authorId, name }, title, category, _id, image, description } = post;
+  const { _createdAt, views, author, title, category, _id, image, description } = post;
 
   return (
     <li className='startup-card group'>
@@ -24,9 +27,9 @@ const ProjectCard = ({ post } : { post:ProjectCardType }) => {
 
         <div className='flex-between mt-5 gap-5'>
           <div className='flex-1'>
-            <Link href={`/user/${authorId}`}>
+            <Link href={`/user/${author?._id}`}>
               <p className='text-16-medium line-clamp-1'>
-                {name}
+                {author?.name}
               </p>
             </Link>
             <Link href={`/startup/${_id}`}>
@@ -36,7 +39,7 @@ const ProjectCard = ({ post } : { post:ProjectCardType }) => {
             </Link>
           </div>
 
-          <Link href={`/user/${authorId}`}>
+          <Link href={`/user/${author?._id}`}>
               <Image src="https://placehold.co/48x48" alt="placeholder" width={48} height={48} className='rounded-full'/>
           </Link>
         </div>
@@ -50,7 +53,7 @@ const ProjectCard = ({ post } : { post:ProjectCardType }) => {
         </Link>
 
         <div className='flex-between mt-5 gap-3'>
-          <Link href={`/?query=${category.toLowerCase()}`}>
+          <Link href={`/?query=${category?.toLowerCase()}`}>
             <p className='text-16-medium'>{ category }</p>
           </Link>
 

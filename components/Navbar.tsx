@@ -18,7 +18,7 @@ const NavBar = async () => {
                     <>
                         <Link href="/startup/create">
                             <span>
-                                Create Startup
+                                Create Project
                             </span>
                         </Link>
 

@@ -1,20 +1,13 @@
-import ProjectCard from "@/components/ui/ProjectCard";
+import ProjectCard, { ProjectCardType } from "@/components/ui/ProjectCard";
 import SearchForm from "../../components/SearchForm";
+import { client } from "@/sanity/lib/client";
+import { PROJECTS_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home( { searchParams } : {
   searchParams: Promise<{ query: string; }>;
 }) {
   const query = (await searchParams).query;
-  const posts = [{
-    _createdAt: new Date(),     // date created here is not a valid string
-    views: 55,
-    author: { _id: 1, name: 'John Doe' },
-    _id: 1,
-    description: 'This projects aims to create a new way to connect with other developers',
-    image: 'https://d3ui957tjb5bqd.cloudfront.net/uploads/2021/12/23072553/9-Project-Ideas-for-a-Graphic-Design-Portfolio_FeaturedImage_Horizontal-2.jpg',
-    category: 'Web Development',
-    title: 'WebFun',
-  }];
+  const posts = await client.fetch(PROJECTS_QUERY);
 
   return (
     <>
