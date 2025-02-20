@@ -1,4 +1,4 @@
-import StartupCard from "@/components/ui/StartupCard";
+import ProjectCard from "@/components/ui/ProjectCard";
 import SearchForm from "../../components/SearchForm";
 
 export default async function Home( { searchParams } : {
@@ -19,7 +19,7 @@ export default async function Home( { searchParams } : {
   return (
     <>
       <section className="pink_container">
-        <h1 className="heading">Pitch Your Startup, <br /> Connect with Entrepreneurs</h1>
+        <h1 className="heading">Pitch Your Projects, <br /> Connect with other Dev</h1>
         <p className="sub-heading !max-w-3xl">
           Share Your Ideas, Cast Your Votes, and Shine in Online Competitions.
         </p>
@@ -34,8 +34,8 @@ export default async function Home( { searchParams } : {
         {/* Display thhe project posts only if there are any */}
         <ul className="mt-7 card_grid">
           { posts?.length > 0 ? (
-            posts.map((post: StartupCardType) => (
-              <StartupCard key={post?._id} post={post}/>
+            posts.map((post: ProjectCardType) => (
+              <ProjectCard key={post?._id} post={post}/>
             ))
           ) : <p className="no-results">No projects found</p>}
         </ul>

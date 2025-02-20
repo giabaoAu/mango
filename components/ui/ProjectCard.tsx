@@ -5,7 +5,7 @@ import Link from 'next/link'
 import React from 'react'
 import { Button } from './button'
 
-const StartupCard = ({ post } : { post:StartupTypeCard }) => {
+const ProjectCard = ({ post } : { post:ProjectCardType }) => {
   // Destructure the post object for esaier access
   const { _createdAt, views, author: { _id: authorId, name }, title, category, _id, image, description } = post;
 
@@ -62,4 +62,4 @@ const StartupCard = ({ post } : { post:StartupTypeCard }) => {
   )
 }
 
-export default StartupCard
+export default ProjectCard
