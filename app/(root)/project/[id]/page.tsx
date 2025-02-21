@@ -1,5 +1,5 @@
 import { client } from '@/sanity/lib/client';
-import { PROJECTS_QUERY, PROJECTS_QUERY_BY_ID } from '@/sanity/lib/queries';
+import { PROJECTS_QUERY_BY_ID } from '@/sanity/lib/queries';
 import { notFound } from 'next/navigation';
 import React from 'react'
 
