@@ -29,10 +29,10 @@ const ProjectCard = ({ post } : { post:ProjectCardType }) => {
           <div className='flex-1'>
             <Link href={`/user/${author?._id}`}>
               <p className='text-16-medium line-clamp-1'>
-                {author?.name}
+                {author?.username}
               </p>
             </Link>
-            <Link href={`/startup/${_id}`}>
+            <Link href={`/project/${_id}`}>
               <p className='text-26-semibold line-clamp-1'>
                 {title}
               </p>
@@ -44,7 +44,7 @@ const ProjectCard = ({ post } : { post:ProjectCardType }) => {
           </Link>
         </div>
 
-        <Link href={`/startup/${_id}`}>
+        <Link href={`/project/${_id}`}>
           <p className='startup-card_desc'>
             {description}
           </p>
@@ -58,7 +58,7 @@ const ProjectCard = ({ post } : { post:ProjectCardType }) => {
           </Link>
 
           <Button className="startup-card_btn" asChild>
-            <Link href={`/startup/${_id}`}>Details</Link>
+            <Link href={`/project/${_id}`}>Details</Link>
           </Button>
         </div>
     </li>

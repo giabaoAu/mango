@@ -12,6 +12,7 @@
 4. Sanity
    -> Database Management
    -> Query Language (GROQ)
+   -> Live API Content
 
 ### NOTE
 
@@ -30,8 +31,10 @@
    -> Might need to change as it might be vulnerable
 
 # (^.^)> New Things I Learnt!
+
 1. Sanity allow caching -> if < ${revalidate} ? use from cache : get from data source
-      -> Demonstration: ![alt text](image.png)
+   -> Demonstration: ![alt text](image.png)
+
 # ^(>.<)^ IMPLEMENT LATER!
 
 1. Github login for now -> Google login later
