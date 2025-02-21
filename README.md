@@ -29,7 +29,10 @@
 2. **PROJECT_ID AND DATASET** is set as environment var on Vercel
    -> Might need to change as it might be vulnerable
 
-##### IMPLEMENT LATER!
+# (^.^)> New Things I Learnt!
+1. Sanity allow caching -> if < ${revalidate} ? use from cache : get from data source
+      -> Demonstration: ![alt text](image.png)
+# ^(>.<)^ IMPLEMENT LATER!
 
 1. Github login for now -> Google login later
 2. Change localhost to vercel link later in the github Oauth setting
