@@ -30,3 +30,8 @@ export const PROJECTS_QUERY_BY_ID = defineQuery(`*[_type=="project" && _id == $i
   image,
   pitch
 }`)
+
+export const PROJECTS_QUERY_VIEW = defineQuery(`
+  *[_type=="project" && _id == $id][0]{
+    _id, views
+  }`)

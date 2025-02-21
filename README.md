@@ -34,6 +34,8 @@
 
 1. Sanity allow caching -> if < ${revalidate} ? use from cache : get from data source
    -> Demonstration: ![alt text](image.png)
+2. Fetching using client.fetch()
+3. Understanding Partial Pre-rendering (PPR) and SSR
 
 # ^(>.<)^ IMPLEMENT LATER!
 
@@ -41,3 +43,5 @@
 2. Change localhost to vercel link later in the github Oauth setting
 3. Change favicon.icon to our logo later
 4. Change StartupCard to ProjectCard
+5. Create a function formatView() in /lib/utils.ts to check if view is plural or singular
+6. Increase view whenever someone visits the project page
