@@ -7,7 +7,7 @@
 ## Tech Stack
 
 1. Nextjs
-2. Auth.js
+2. Auth.js -> GitHub Oath
 3. Shadcn UI
 4. Sanity
    -> Database Management
@@ -17,12 +17,13 @@
 ### NOTE
 
 1. Modify pre-defined tailwinds class in /app/global.css
-2. why writing code to the page.tsx ? -> PPR: server + client side rendering
+2. Why writing code to the page.tsx ? -> PPR: server + client side rendering
 3. Most of the components are server-side-rendering (SSR) -> except /components/SearchFormReset.tsx
 4. Dataset being used: _mango_ -> might need to change to production
 5. Documents (authors, projects, ...) are tracked using sanity type gen
    -> extract schema author.ts and project.ts
    -> If not able to extract -> _npm install lucide-react@0.469.0_ or lucide-react@latest --legacy-peer-deps (React19 is crazy)
+6. Clients only able to write to _dataset_ using Sanity API Tokens
 
 #### BUG TO BE FIXED
 
