@@ -6,5 +6,5 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: false, // Set to false for sanity Live Content API
+  useCdn: true, // Set to false for sanity Live Content API - NO CACHING
 })

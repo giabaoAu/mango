@@ -7,9 +7,11 @@
 ## Tech Stack
 
 1. Nextjs
-2. Auth.js -> GitHub Oath
-3. Shadcn UI
-4. Sanity
+2. TypeScript
+3. Tailwindcss
+4. Auth.js -> GitHub Oath
+5. Shadcn UI
+6. Sanity
    -> Database Management
    -> Query Language (GROQ)
    -> Live API Content
@@ -19,11 +21,28 @@
 1. Modify pre-defined tailwinds class in /app/global.css
 2. Why writing code to the page.tsx ? -> PPR: server + client side rendering
 3. Most of the components are server-side-rendering (SSR) -> except /components/SearchFormReset.tsx
+
 4. Dataset being used: _mango_ -> might need to change to production
+
 5. Documents (authors, projects, ...) are tracked using sanity type gen
    -> extract schema author.ts and project.ts
    -> If not able to extract -> _npm install lucide-react@0.469.0_ or lucide-react@latest --legacy-peer-deps (React19 is crazy)
+
 6. Clients only able to write to _dataset_ using Sanity API Tokens
+
+7. _Project page_ use client.fetch()
+   -> useCdn = true -> allow caching for static part
+   -> we use writeClient() for _Views_ part -> useCdn = false -> Dynamic!
+
+   The project page use Incremental Static Regeneration (ISR)
+   -> Revalidate the page every 60s
+   -> Any update from database is delivered when cache is refreshed
+   The View button use SSR
+
+8. User when logged in with GitHub
+   -> Check if the user already registerd as an author in Sanity database
+   -> By fetch a sanity query to check with that specific GitHub ID
+   -> If not -> writeClient() as happening in the background
 
 #### BUG TO BE FIXED
 
