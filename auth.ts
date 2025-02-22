@@ -10,7 +10,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     // profile, user from github oauth
     // Check if we need to create a new author associated with this github account
-    async signIn({ user: {name, email, image}, profile: {id, login, bio} }) {
+    async signIn({ user: {name, email, image}, profile }) {
+      if(!profile) return false; 
+
+      const { id, login, bio } = profile;
+      
       // Disable caching to get session live data
       const exstingUser = await client
         .withConfig({useCdn: false})
