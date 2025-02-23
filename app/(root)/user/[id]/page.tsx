@@ -1,4 +1,5 @@
 import { auth } from '@/auth';
+import { ProjectCardSkeleton } from '@/components/ui/ProjectCard';
 import UserProject from '@/components/UserProject';
 import { client } from '@/sanity/lib/client';
 import { AUTHOR_BY_ID_QUERY } from '@/sanity/lib/queries';
@@ -51,7 +52,9 @@ const page = async ({ params } : { params: Promise<{ id: string }> }) => {
             
             {/* ppr here -> projects are load dynamically */}
             <ul className='card_grid-sm'>
-                <Suspense fallback={<p>loading...</p>}>
+                <Suspense fallback={
+                  <ProjectCardSkeleton />
+                }>
                     <UserProject id={id} />
                 </Suspense>
             </ul>
