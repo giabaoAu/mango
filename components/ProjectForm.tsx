@@ -9,6 +9,7 @@ import { formSchema } from '@/lib/validation';
 import { z } from 'zod';
 import { toast } from "sonner"
 import { useRouter } from 'next/navigation';
+import { createPitch } from '@/lib/actions';
 
 const ProjectForm = () => {
   
@@ -28,20 +29,18 @@ const ProjectForm = () => {
         }
 
         await formSchema.parseAsync(formValues);
-        console.log(formValues);
+    
+        const result = await createPitch(prevState, formData, pitch);
 
-        // const result = await createIdea(prevState, formData, pitch);
-        // console.log(result);
+        if (result.status == 'SUCCESS'){
+            toast('Success', {
+                description: 'Your pitch has been submitted sucessfully!',
+            })
 
-        // if (result.status == 'SUCCESS'){
-        //     toast('Success', {
-        //         description: 'Your pitch has been submitted sucessfully!',
-        //     })
+            router.push(`/project/${result._id}`)
+        }
 
-        //     router.push(`/project/${result.id}`)
-        // }
-
-        // return result;
+        return result;
     } catch (error) {
         
         // z error
