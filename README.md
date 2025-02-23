@@ -1,15 +1,15 @@
 # Introduction
 
     Welcome to Mango. This is where your next journey starts^^
-    We connect developers around the world, main South Australia, in search for
-    the next collaboration!
+    We connect developers around the world, mainly South Australia.
+    The platform is designed for students, programmers to collab on interesting and impactful projects!
 
 ## Tech Stack
 
 1. Nextjs
 2. TypeScript
 3. Tailwindcss
-4. Auth.js -> GitHub Oath
+4. Auth.js -> nextAuth -> GitHub Oath
 5. Shadcn UI
 6. Sanity
    -> Database Management
@@ -44,7 +44,11 @@
    -> By fetch a sanity query to check with that specific GitHub ID
    -> If not -> writeClient() as happening in the background
 
-9. Project Form Submission Handling 
+   -> User Profile Page => PPR
+   -> User Credentials in profile_card is static (cached)
+   -> Projects are updated live
+
+9. Project Form Submission Handling
    -> It validates the form with a form schema (using validation.ts)
    -> if fail, it reset the form
    -> Identify if a _z error_ or just a normal error
@@ -52,8 +56,7 @@
 #### BUG TO BE FIXED
 
 1. MIGHT NEED TO DOWNGRADE TO REACT18 BC SANITY NOT FULLY SUPPORT REACT19 YET
-2. **PROJECT_ID AND DATASET** is set as environment var on Vercel
-   -> Might need to change as it might be vulnerable
+2. Create a function formatView() in /lib/utils.ts to check if view is plural or singular
 
 # (^.^)> New Things I Learnt!
 
@@ -65,8 +68,8 @@
 # ^(>.<)^ IMPLEMENT LATER!
 
 1. Github login for now -> Google login later
-2. Change localhost to vercel link later in the github Oauth setting
-3. Change favicon.icon to our logo later
-4. Change StartupCard to ProjectCard
-5. Create a function formatView() in /lib/utils.ts to check if view is plural or singular
-6. Increase view whenever someone visits the project page
+2. Sentry Performance + Bug Tracking (Will be ok with overides in package.json)
+3. Change localhost to vercel link later in the github Oauth setting
+4. Change favicon.icon to our logo later
+5. **PROJECT_ID AND DATASET** is set as environment var on Vercel
+   -> Might need to change as it might be vulnerable
