@@ -44,6 +44,11 @@
    -> By fetch a sanity query to check with that specific GitHub ID
    -> If not -> writeClient() as happening in the background
 
+9. Project Form Submission Handling 
+   -> It validates the form with a form schema (using validation.ts)
+   -> if fail, it reset the form
+   -> Identify if a _z error_ or just a normal error
+
 #### BUG TO BE FIXED
 
 1. MIGHT NEED TO DOWNGRADE TO REACT18 BC SANITY NOT FULLY SUPPORT REACT19 YET

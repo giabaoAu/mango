@@ -1,21 +1,82 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useActionState, useState } from 'react'
 import { Input } from './ui/input'
 import { Textarea } from './ui/textarea';
 import MDEditor from '@uiw/react-md-editor';
 import { Button } from './ui/button';
 import { Send } from 'lucide-react';
+import { formSchema } from '@/lib/validation';
+import { z } from 'zod';
+import { toast } from "sonner"
+import { useRouter } from 'next/navigation';
 
 const ProjectForm = () => {
   
   // Record used for letting ts knows errors is an object with string keys
   const [errors, setErrors] = useState<Record<string,string>>({});
   const [pitch, setPitch] = useState("");
-  
-  const isPending = false;
+  const router = useRouter();
 
+  const handleSubmit = async (prevState: any, formData: FormData) => {
+    try {
+        const formValues = {
+            title: formData.get('title') as string,
+            description: formData.get('description') as string,
+            category: formData.get('category') as string,
+            link: formData.get('link') as string,
+            pitch,
+        }
+
+        await formSchema.parseAsync(formValues);
+        console.log(formValues);
+
+        // const result = await createIdea(prevState, formData, pitch);
+        // console.log(result);
+
+        // if (result.status == 'SUCCESS'){
+        //     toast('Success', {
+        //         description: 'Your pitch has been submitted sucessfully!',
+        //     })
+
+        //     router.push(`/project/${result.id}`)
+        // }
+
+        // return result;
+    } catch (error) {
+        
+        // z error
+        if(error instanceof z.ZodError){
+            const fieldError = error.flatten().fieldErrors;
+            setErrors(fieldError as unknown as Record<string, string>);
+
+            toast('Error', {
+                description: 'Please check your input!',
+            }) 
+
+            return { ...prevState, error: 'Validation Failed', status:'ERROR' };
+        }
+
+        
+        toast('Error', {
+            description: 'Please check your input!',
+        }) 
+
+        // other types of error (caching)
+        return {
+            ...prevState,
+            error: 'An expected error has occured!',
+            status: 'ERROR'
+        }
+    }
+  }
+  
+  const [state, formAction, isPending] = useActionState(handleSubmit, {
+    error: "",
+    status: "INITIAL",
+  });
+  
     return (
-    <form action={ ()=>{} } className='startup-form'>
+    <form action={ formAction } className='startup-form'>
         
         {/* title */}
         <div>
@@ -91,7 +152,7 @@ const ProjectForm = () => {
 
         {/* Pitch */}
         <div data-color-mode='light'>
-            <label htmlFor='pitch' className='startup-form_label'>Image URL</label>
+            <label htmlFor='pitch' className='startup-form_label'>Pitch Details</label>
             
             <MDEditor
                 value={pitch}
