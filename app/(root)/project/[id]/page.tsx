@@ -1,6 +1,6 @@
 import { formatDate } from '@/lib/utils';
 import { client } from '@/sanity/lib/client';
-import { PROJECTS_QUERY_BY_ID } from '@/sanity/lib/queries';
+import { PLAYLIST_BY_SLUG_QUERY, PROJECTS_QUERY_BY_ID } from '@/sanity/lib/queries';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -10,6 +10,7 @@ import React, { Suspense } from 'react'
 import markdownit from 'markdown-it';
 import { Skeleton } from '@/components/ui/skeleton';
 import View from '@/components/View';
+import ProjectCard, { ProjectCardType } from '@/components/ui/ProjectCard';
 const md = markdownit();
 
 // We don't wanna use SanityLive here bc we want the page data to be fetched quickly so instead we can use Partial Pre-rendering (PPR) -> staic + dynamic
@@ -18,9 +19,15 @@ export const experimental_ppr = true;
 
 const page = async ({ params } : { params: Promise<{ id: string }> }) => {
   const id = (await params).id;
-  const posts = await client.fetch(PROJECTS_QUERY_BY_ID, { id });
+  
+  // parallel fetching
+  const [posts, { select: editorPosts } ] = await Promise.all([
+    client.fetch(PROJECTS_QUERY_BY_ID, { id }),
+    client.fetch(PLAYLIST_BY_SLUG_QUERY, { slug: 'project-of-the-week' }),
+  ]);
+  
   const parsedContent = md.render(posts?.pitch || '');
-
+  
   if (!posts) return notFound();
     return (
     <>
@@ -63,7 +70,7 @@ const page = async ({ params } : { params: Promise<{ id: string }> }) => {
                 { parsedContent ? (
                     <article 
                         className='prose max-w-4xl font-work-sans break-all'
-                        dangerouslySetInnerHTML={{ __html: parsedContent}}      // We need to tell React this is save
+                        dangerouslySetInnerHTML={{ __html: parsedContent}}      // We need to tell React this is safe
                     />
                 ) : (
                     <p className='no-result'>
@@ -74,7 +81,16 @@ const page = async ({ params } : { params: Promise<{ id: string }> }) => {
 
             <hr className='divider'/>
 
-            {/* TODO : EDITOR CHOICE PROJECT */}
+            { editorPosts?.length > 0 && (
+                <div className='max-w-4xl mx-auto'>
+                    <p className='text-30-semibold'>Editor Picks</p>
+                    <ul className='mt-7 card_grid-sm'>
+                        { editorPosts.map((post: ProjectCardType, index : number) => (
+                            <ProjectCard key={index} post={post} />    
+                    ))}
+                    </ul>
+                </div>
+            )}
 
             <Suspense fallback={<Skeleton className='view_skeleton' />}>
                 <View id={id}/>

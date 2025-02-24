@@ -15,7 +15,7 @@ const UserProject = async ({id} : {id:string}) => {
         )) : (
             <p className="no-result">No projects yet...</p>
         )
-    };
+    }
 
     </>
   )

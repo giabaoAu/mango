@@ -64,10 +64,14 @@
    -> Demonstration: ![alt text](image.png)
 2. Fetching using client.fetch()
 3. Understanding Partial Pre-rendering (PPR) and SSR
+4. Sequential vs Parallel Fetching using Promise.all()
+   -> Inside the Project Page, the post and editor picks are being fetch in parallel
+   -> Significally reduce time consumption!
 
 # ^(>.<)^ IMPLEMENT LATER!
 
 1. Github login for now -> Google login later
+2. Add in a category filter row 
 2. Sentry Performance + Bug Tracking (Will be ok with overides in package.json)
 3. Change localhost to vercel link later in the github Oauth setting
 4. Change favicon.icon to our logo later
