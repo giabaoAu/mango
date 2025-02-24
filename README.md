@@ -55,8 +55,7 @@
 
 #### BUG TO BE FIXED
 
-1. MIGHT NEED TO DOWNGRADE TO REACT18 BC SANITY NOT FULLY SUPPORT REACT19 YET
-2. Create a function formatView() in /lib/utils.ts to check if view is plural or singular
+No issue for now ...
 
 # (^.^)> New Things I Learnt!
 
@@ -71,9 +70,7 @@
 # ^(>.<)^ IMPLEMENT LATER!
 
 1. Github login for now -> Google login later
-2. Add in a category filter row 
-2. Sentry Performance + Bug Tracking (Will be ok with overides in package.json)
-3. Change localhost to vercel link later in the github Oauth setting
+2. Add in a category filter row
+3. Sentry Performance + Bug Tracking (Will be ok with overides in package.json)
 4. Change favicon.icon to our logo later
-5. **PROJECT_ID AND DATASET** is set as environment var on Vercel
-   -> Might need to change as it might be vulnerable
+5. Create a function formatView() in /lib/utils.ts to check if view is plural or singular
